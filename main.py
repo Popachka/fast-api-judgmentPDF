@@ -93,3 +93,7 @@ async def upload_pdf(file: UploadFile = File(...), db: AsyncSession = Depends(ge
             return data_list
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred while processing the PDF file: {str(e)}")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

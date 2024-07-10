@@ -4,6 +4,8 @@ services:
   db:
     container_name: postgres_pdf
     image: postgres
+    ports:
+      - 5432:5432
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -17,6 +19,8 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - "80:80"  # Проброс портов, если требуется доступ к pgAdmin через браузер
 
   app:
     container_name: judge_pdf
@@ -26,6 +30,12 @@ services:
     command: bash -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000"
     volumes:
       - .:/app
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://$DB_USER:$DB_PASSWORD@db:5432/$DB_NAME
+    ports:
+      - "8000:8000"
 
 volumes:
   postgres_data:
