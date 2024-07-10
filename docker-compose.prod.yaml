@@ -20,7 +20,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
     ports:
-      - "80:80"  # Проброс портов, если требуется доступ к pgAdmin через браузер
+      - "5050:80"  # Проброс портов, если требуется доступ к pgAdmin через браузер
 
   app:
     container_name: judge_pdf
