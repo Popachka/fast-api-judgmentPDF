@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: postgres_pdf
+    image: postgres
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin_pdf
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+
+  app:
+    container_name: judge_pdf
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    command: bash -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000"
+    volumes:
+      - .:/app
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    driver: bridge
