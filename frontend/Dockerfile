@@ -1,19 +1,22 @@
-# Use the official Node.js image.
-FROM node:18-alpine
+# Стадия: Сборка приложения
+FROM node:18-alpine as build
 
-# Set the working directory
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
+# Копируем package.json и package-lock.json
 COPY package.json ./
 COPY package-lock.json ./
+
+# Устанавливаем зависимости
 RUN npm install --silent
 
-# add app
+# Копируем остальные файлы
 COPY . ./
 
-# start app
-CMD ["npm", "start"]
+# Собираем приложение
+RUN npm run build
+
+# Опционально: Указываем директорию, в которую будут сохраняться сгенерированные файлы
+# Вы можете использовать эту директорию для копирования файлов на ваш сервер
+RUN mkdir -p /app/dist && cp -R /app/build/* /app/dist
