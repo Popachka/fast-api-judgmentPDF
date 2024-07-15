@@ -2,10 +2,11 @@ import Card from "./components/Card";
 import Header from "./components/Header";
 import FileInput from "./components/FileInput";
 import Footer from "./components/Footer";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { FileContext } from "./context/FileContext";
 import { Link } from "react-router-dom";
 function App() {
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const { uploadedFiles, setUploadedFiles } = useContext(FileContext);
   return (
     <div className="App fh-full ">
       <Header />
