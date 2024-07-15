@@ -1,9 +1,17 @@
-import React from 'react'
-
-const Card = () => {
+import React from "react";
+const Card = ({ data, file_name, file_size, index }) => {
+  console.log('card', data, index)
   return (
-    <div class=" w-60 h-80 p-6 rounded-lg cursor-pointer border border-cyan-500 hover:bg-slate-100"></div>
-  )
-}
+    <div
+      className="border border-gray-300 p-3 rounded"
+    >
+      <>
+        <p>Название файла: {file_name}</p>
+        <p>Размер файла: {file_size} bytes</p>
+        {/* Другая полная информация о файле */}
+      </>
+    </div>
+  );
+};
 
-export default Card
+export default Card;

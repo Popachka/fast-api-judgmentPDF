@@ -2,7 +2,10 @@ import Card from "./components/Card";
 import Header from "./components/Header";
 import FileInput from "./components/FileInput";
 import Footer from "./components/Footer";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 function App() {
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   return (
     <div className="App fh-full ">
       <Header />
@@ -17,9 +20,26 @@ function App() {
           </div>
           <div className="p-5">выфвфывфывыф</div>
         </div>
-        <FileInput />
+        <FileInput setUploadedFiles={setUploadedFiles} />
         <div className="mt-10 p-3 border-solid border-2 border-blue-300 h-full grid grid-cols-4 gap-4">
-          <Card />
+          {uploadedFiles.map((file, index) => (
+            <Link
+              to={`/file/${index}`}
+              state={{
+                data: file.data,
+                file_name: file.file_name,
+                file_size: file.file_size,
+              }}
+            >
+              <Card
+                key={index}
+                data={file.data}
+                file_name={file.file_name}
+                file_size={file.file_size}
+                index={index}
+              />
+            </Link>
+          ))}
         </div>
         <Footer />
       </div>
