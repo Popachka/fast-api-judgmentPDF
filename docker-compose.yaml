@@ -32,18 +32,3 @@ services:
       - 8000:8000
     depends_on:
       - db
-  frontend:
-    container_name: react_frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    volumes:
-      - ./frontend:/app
-    command: sh -c "npm run build"
-    depends_on:
-      - app
-    deploy:
-      resources:
-        limits:
-          memory: 4g
-          swap: 8g
