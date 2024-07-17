@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Копируем package.json и package-lock.json
 COPY package.json ./
-COPY package-lock.json ./
 
 # Устанавливаем зависимости
 RUN npm install --silent
