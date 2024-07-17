@@ -13,6 +13,7 @@ from typing import List
 app = FastAPI()
 origins = [
     "http://localhost:3000",
+    'http://judgmentfiles.online/'
 ]
 app.add_middleware(
     CORSMiddleware,
