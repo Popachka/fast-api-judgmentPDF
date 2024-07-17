@@ -1,9 +1,8 @@
 import React from "react";
 const Card = ({ data, file_name, file_size, index }) => {
-  console.log('card', data, index)
   return (
     <div
-      className="border border-gray-300 p-3 rounded"
+      className="border border-gray-300 p-3 rounded overflow-hidden"
     >
       <>
         <p>Название файла: {file_name}</p>

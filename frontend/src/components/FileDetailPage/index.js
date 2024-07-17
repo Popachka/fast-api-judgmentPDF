@@ -1,7 +1,6 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 const FileDetailPage = () => {
   const location = useLocation();
-  const { index } = useParams();
   const { data, file_name, file_size } = location.state || {};
   return (
     <div className="container mx-auto p-6">
