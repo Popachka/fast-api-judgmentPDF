@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json ./
 
 # Устанавливаем зависимости
-RUN npm install --silent
+RUN npm install 
 
 # Копируем остальные файлы
 COPY . ./

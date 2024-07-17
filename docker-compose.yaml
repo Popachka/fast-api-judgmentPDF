@@ -42,3 +42,8 @@ services:
     command: sh -c "npm run build"
     depends_on:
       - app
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+          swap: 8g
