@@ -11,8 +11,7 @@ package-lock.json
 yarn.lock
 
 
-# Ignore environment variable files
-.env
+
 
 # Ignore IDE/editor specific files
 .vscode/
