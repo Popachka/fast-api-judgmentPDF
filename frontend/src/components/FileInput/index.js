@@ -22,7 +22,7 @@ const FileInput = ({ setUploadedFiles }) => {
     });
 
     try {
-      const response = await fetch("http://localhost:8000/upload-pdf/", {
+      const response = await fetch("http://localhost:8000/api/upload-pdf/", {
         method: "POST",
         body: formData,
       });

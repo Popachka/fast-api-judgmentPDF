@@ -14,8 +14,6 @@ yarn.lock
 build/
 dist/
 
-# Ignore environment variable files
-.env
 
 # Ignore IDE/editor specific files
 .vscode/

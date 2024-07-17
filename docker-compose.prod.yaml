@@ -12,24 +12,14 @@ services:
       - POSTGRES_DB=${DB_NAME}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
-  pgadmin:
-    container_name: pgadmin_pdf
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
-      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
-    ports:
-      - "5050:80"  # Проброс портов, если требуется доступ к pgAdmin через браузер
-
   app:
     container_name: judge_pdf
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile.prod
     command: bash -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000"
     volumes:
-      - .:/app
+      - ./backend:/app
     depends_on:
       - db
     environment:
